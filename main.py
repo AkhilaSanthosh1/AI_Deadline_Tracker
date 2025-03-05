@@ -24,10 +24,12 @@ class Task:
         return None
 
 def prioritize_tasks(tasks):
-    # TODO: Replace with real AI model (e.g., LLaMA 3.2) via API in the future
+    # Placeholder for LLaMA 3.2 or other AI model
+    # Future: Send task data to AI API and get priority scores
+    # Example: response = ai_api.predict(tasks) -> returns priority list
     workload = sum(1 for task in tasks if task.time_remaining() <= 86400 and not task.completed)
     for task in tasks:
-        if workload > 3:
+        if workload > 3 or "urgent" in task.name.lower():
             task.priority = max(1, task.priority - 1)
     return sorted(tasks, key=lambda x: (x.time_remaining(), x.priority))
 
